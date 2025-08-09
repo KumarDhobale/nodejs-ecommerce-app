@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - Shopify</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="https://www.flaticon.com/svg/static/icons/svg/3144/3144456.svg" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <a href="/" class="logo">Shopify</a>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search for products, brands and more">
+            <button id="search-btn">Search</button>
+        </div>
+        <nav>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/views/products.html">Products</a>
+                <a href="/views/cart.html">
+                    Cart
+                    <span id="cart-count">0</span>
+                </a>
+                <a href="/views/login.html">Login</a>
+                <button id="logout-btn" style="display:none;">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="cart-container">
+            <div id="cart-items-list">
+                </div>
+            <div id="cart-summary">
+                <h3>Order Summary</h3>
+                <p>Total: $<span id="cart-total">0.00</span></p>
+                <button id="checkout-btn">Checkout</button>
+            </div>
+        </div>
+        <p id="empty-cart-message" class="empty-cart-message" style="display:none;">Your cart is empty.</p>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Shopify. All rights reserved.</p>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

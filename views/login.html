@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="https://www.flaticon.com/svg/static/icons/svg/3144/3144456.svg" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <a href="/" class="logo">Shopify</a>
+        <nav>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/views/cart.html">Cart (<span id="cart-count">0</span>)</a>
+                <a href="/views/login.html">Login</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="auth-container">
+            <h2>Sign in to Shopify</h2>
+            <form id="login-form">
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <p id="login-message" class="message"></p>
+            <p class="message">Don't have an account? <a href="/views/register.html">Create one</a></p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Shopify. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartCountSpan = document.getElementById('cart-count');
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cartCountSpan.textContent = cart.length;
+        });
+
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = e.target.username.value;
+            const password = e.target.password.value;
+            const messageElement = document.getElementById('login-message');
+
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+
+            const data = await response.json();
+            messageElement.textContent = data.message;
+            if (response.ok) {
+                messageElement.style.color = 'green';
+                localStorage.setItem('user', JSON.stringify(data.user));
+                localStorage.setItem('token', data.token);
+                window.location.href = '/'; // Redirect to home page
+            } else {
+                messageElement.style.color = 'red';
+            }
+        });
+    </script>
+</body>
+</html>

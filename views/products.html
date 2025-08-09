@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products - Shopify</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="https://www.flaticon.com/svg/static/icons/svg/3144/3144456.svg" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <a href="/" class="logo">Shopify</a>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search for products, brands and more">
+            <button id="search-btn">Search</button>
+        </div>
+        <nav>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/views/cart.html">
+                    Cart
+                    <span id="cart-count">0</span>
+                </a>
+                <a href="/views/login.html">Login</a>
+                <button id="logout-btn" style="display:none;">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="main-header">
+            <h2>All Products</h2>
+            <div class="sort-controls">
+                <label for="sort-by">Sort By:</label>
+                <select id="sort-by">
+                    <option value="default">Default</option>
+                    <option value="price-low-to-high">Price: Low to High</option>
+                    <option value="price-high-to-low">Price: High to Low</option>
+                </select>
+            </div>
+        </div>
+        <div id="product-list" class="product-grid">
+            </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Shopify. All rights reserved.</p>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
