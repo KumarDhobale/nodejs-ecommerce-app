@@ -97,3 +97,6 @@ Browse: The homepage (/) and products page (/views/products.html) display all pr
 Add to Cart: Click "Add to Cart" on any product card to add it to your cart.
 
 Checkout: After logging in, you can click "Checkout" on the cart page to place an order. The order details will be saved in the orders collection in your MongoDB database.
+
+
+

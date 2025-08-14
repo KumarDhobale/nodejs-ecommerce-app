@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartTotalSpan = document.getElementById('cart-total');
     const emptyCartMessage = document.getElementById('empty-cart-message');
     const checkoutBtn = document.getElementById('checkout-btn');
+    const productDetailContainer = document.getElementById('product-detail-container');
+    const productNotFound = document.getElementById('product-not-found');
     let products = [];
 
     // Header logic (logout, login)
@@ -252,12 +254,68 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Product Detail Page Logic ---
+    function renderProductDetail() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+        
+        if (!productId) {
+            if (productNotFound) productNotFound.style.display = 'block';
+            return;
+        }
+
+        fetch(`/api/products/${productId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Product not found');
+                }
+                return response.json();
+            })
+            .then(product => {
+                if (productNotFound) productNotFound.style.display = 'none';
+                
+                if (productDetailContainer) {
+                    document.getElementById('product-page-title').textContent = product.name;
+                    productDetailContainer.innerHTML = `
+                        <div class="product-detail-image">
+                            <img src="${product.imageUrl}" alt="${product.name}" class="product-detail-img">
+                        </div>
+                        <div class="product-detail-info">
+                            <h1>${product.name}</h1>
+                            <p class="product-detail-price">$${product.price.toFixed(2)}</p>
+                            <p>${product.description}</p>
+                            <button class="add-to-cart-detail" data-id="${product._id}">Add to Cart</button>
+                        </div>
+                    `;
+
+                    // Add to Cart button ko event listener dein
+                    const addToCartDetailBtn = productDetailContainer.querySelector('.add-to-cart-detail');
+                    if (addToCartDetailBtn) {
+                        addToCartDetailBtn.addEventListener('click', () => {
+                            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                            cart.push(product); // Add the full product object
+                            localStorage.setItem('cart', JSON.stringify(cart));
+                            updateCartCount();
+                            alert(`${product.name} added to cart!`);
+                        });
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching product:', error);
+                if (productNotFound) productNotFound.style.display = 'block';
+            });
+    }
+
     // Initial functions to run based on the page
     if (productList) {
         fetchProducts();
     }
     if (cartItemsList) {
         renderCartItems();
+    }
+    if (productDetailContainer) {
+        renderProductDetail();
     }
     updateCartCount();
 });

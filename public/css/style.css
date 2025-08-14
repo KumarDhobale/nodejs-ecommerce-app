@@ -109,7 +109,7 @@ main {
 
 .product-slider-container {
     width: 100%;
-    height: 500px; /* Slider ki height badhai gayi hai */
+    height: 500px;
     overflow: hidden;
     position: relative;
     border-radius: 12px;
@@ -372,7 +372,7 @@ main {
 
 /* Naya Remove Button CSS */
 .remove-from-cart {
-    background-color: #dc3545; /* Red color for a destructive action */
+    background-color: #dc3545;
     color: #fff;
     border: none;
     padding: 8px 12px;
@@ -440,6 +440,78 @@ main {
     width: 100%;
 }
 
+/* Product Detail Page Styles */
+.product-detail-container {
+    display: flex;
+    gap: 40px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.product-detail-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.product-detail-img {
+    max-width: 100%;
+    height: 400px;
+    object-fit: contain;
+}
+
+.product-detail-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.product-detail-info h1 {
+    font-size: 32px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.product-detail-info .product-detail-price {
+    font-size: 28px;
+    font-weight: 700;
+    color: #b12704;
+    margin-bottom: 20px;
+}
+
+.product-detail-info p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.add-to-cart-detail {
+    background-color: #ff9900;
+    color: #1c1e21;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    text-align: center;
+    width: fit-content;
+}
+
+.add-to-cart-detail:hover {
+    background-color: #e68a00;
+}
+
+
 /* Footer */
 footer {
     background-color: #131921;
@@ -499,4 +571,15 @@ footer p {
         margin-top: 20px;
     }
     
+    .product-slider-container {
+        height: 200px;
+    }
+    
+    /* Product detail page mobile styles */
+    .product-detail-container {
+        flex-direction: column;
+    }
+    .product-detail-img {
+        height: 300px;
+    }
 }
